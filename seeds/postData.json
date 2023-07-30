@@ -2,26 +2,26 @@
     {
         "title": "test title",
         "content": "test content",
-        "username": "Sal"
+        "post_username": "Sal"
     },
     {
         "title": "test title",
         "content": "test content",
-        "username": "Blake"
+        "post_username": "Blake"
     },
     {
         "title": "test title",
         "content": "test content",
-        "username": "Lernantino"
+        "post_username": "Lernantino"
     },
     {
         "title": "test title",
         "content": "test content",
-        "username": "Amiko"
+        "post_username": "Amiko"
     },
     {
         "title": "test title",
         "content": "test content",
-        "username": "Jordan"
+        "post_username": "Jordan"
     }
 ]
