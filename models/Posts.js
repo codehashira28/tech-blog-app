@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Painting extends Model {}
+class Posts extends Model {}
 
-Painting.init(
+Posts.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,36 +15,26 @@ Painting.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    artist: {
-      type: DataTypes.STRING,
+    content: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    exhibition_date: {
+    user_id: {
       type: DataTypes.DATE,
       allowNull: false,
-    },
-    filename: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    gallery_id: {
-      type: DataTypes.INTEGER,
       references: {
-        model: 'gallery',
-        key: 'id',
-      },
+        'model': 'user',
+        'key': 'id'
+      }
     },
   },
   {
     sequelize,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'painting',
+    modelName: 'posts',
   }
 );
 
-module.exports = Painting;
+module.exports = Posts;
