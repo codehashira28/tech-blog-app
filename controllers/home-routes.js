@@ -76,7 +76,7 @@ router.get('/login', (req, res) => {
 });
 
 //dashboard route
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard/', async (req, res) => {
   try {
     const dbPostData = await Post.findAll({
       where: {
