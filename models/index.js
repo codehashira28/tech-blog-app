@@ -1,21 +1,14 @@
 const User = require('./User');
-const Posts = require('./Posts');
-const Comments = require('./Comments');
+const Gallery = require('./Gallery');
+const Painting = require('./Painting');
+const Post = require('./Post');
 
-User.hasMany(Posts, {
-  foreignKey: 'user_id'
+Gallery.hasMany(Painting, {
+  foreignKey: 'gallery_id',
 });
 
-Posts.belongsTo(User, {
-  foreignKey: 'user_id',
+Painting.belongsTo(Gallery, {
+  foreignKey: 'gallery_id',
 });
 
-Posts.hasMany(Comments, {
-  foreignKey: 'post_id',
-});
-
-Comments.belongsTo(Posts, {
-  foreignKey: 'post_id',
-});
-
-module.exports = { User, Posts, Comments };
+module.exports = { User, Gallery, Painting, Post };

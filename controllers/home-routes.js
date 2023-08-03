@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Gallery, Painting } = require('../models');
+const { Gallery, Painting, Post } = require('../models');
 
 // GET all galleries for homepage
 router.get('/', async (req, res) => {
@@ -74,5 +74,47 @@ router.get('/login', (req, res) => {
   }
   res.render('login');
 });
+
+//dashboard route
+router.get('/dashboard', async (req, res) => {
+  try {
+    const dbPostData = await Post.findAll({
+      where: {
+        username: req.session.user
+      }
+    });
+    
+    const posts = dbPostData.map((post) =>
+      post.get({ plain: true })
+    );
+    res.render('dashboard', {
+      posts,
+      loggedIn: req.session.loggedIn,
+      username: req.session.user,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get('/dashboard/create', (req, res) => {
+  res.render('createPost');
+})
+
+router.post('/dashboard/create', async (req, res) => {
+  try {
+    const dbPostData = await Post.create({
+      title: req.body.title,
+      content: req.body.content,
+      username: req.session.user
+    });
+
+    res.status(200).json(dbPostData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;
