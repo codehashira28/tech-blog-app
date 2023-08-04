@@ -1,3 +1,9 @@
-{{#each galleries as |gallery|}}
-{{> gallery-details}}
+{{#each posts as |post|}}
+<div class="w-100 mb-5">
+    <div class="title-block display-flex justify-space-between bg-info text-light p-2">
+        <div>{{post.title}}</div>
+        <div>Posted by {{post.username}}</div>
+    </div>
+    <div class="p-2" style="border: 1px solid #1bbc9b">{{post.content}}</div>
+</div>
 {{/each}}
