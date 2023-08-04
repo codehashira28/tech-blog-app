@@ -1,7 +1,8 @@
 {{#each posts}}
-<div>{{title}}</div>
-<div>{{content}}</div>
-<div>Posted By {{username}}</div>
+<div class="display-flex justify-space-between bg-info text-light p-2 post w-100" style="border-radius: 0.3rem">
+    <div>{{title}}</div>
+    <div>Date</div>
+</div>
 {{/each}}
 
 <a href="/dashboard/create" style="display: block"><button class="btn btn-primary" id="new-post">+ New Post</button></a>
