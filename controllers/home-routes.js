@@ -110,4 +110,10 @@ router.post('/dashboard/create', async (req, res) => {
   }
 })
 
+router.get('/comment', (req, res) => {
+  res.render('createComment', {
+    loggedIn: req.session.loggedIn
+  })
+})
+
 module.exports = router;

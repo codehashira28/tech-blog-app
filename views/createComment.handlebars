@@ -1,0 +1,12 @@
+{{#if loggedIn}}
+<div class="create-comment-block w-100" style="border: 3px solid #2d3e50">
+    <div class="p-2 mb-2" style="background: #2d3e50; color: white">Create New Comment</div>
+    <div class="comment-block px-2">
+        <label for="comment" style="display: block">Comment</label>
+        <input type="textarea" id="comment" class="w-100 my-2 p-2">
+        <button id="create" class="btn btn-primary w-100" style="margin-bottom: 10px">Create</button>
+    </div>
+</div>
+{{else}}
+<a href="/login">Please login to leave a comment</a>
+{{/if}}
