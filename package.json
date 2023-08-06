@@ -10,8 +10,7 @@
     "preseed": "node config/init seed",
     "seed": "node seeds/index",
     "prewatch": "node config/init",
-    "watch": "nodemon server",
-    "postinstall": "cp ./.env.example ./.env"
+    "watch": "nodemon server"
   },
   "keywords": [],
   "author": "",
