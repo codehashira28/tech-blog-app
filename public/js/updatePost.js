@@ -1,4 +1,5 @@
 const updatebtn = document.querySelector('#update');
+const deletebtn = document.querySelector('#delete');
 
 const id = Number(window.location.pathname[window.location.pathname.length-1]);
 
@@ -19,4 +20,17 @@ const updatePost = async (event) => {
     }
 }
 
+const deletePost = async (event) => {
+    const response = await fetch(`/dashboard/post/${id}`, {
+        method: 'DELETE'
+    });
+
+    if(response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert('Failed to update post');
+    }
+}
+
 updatebtn.addEventListener('click', updatePost);
+deletebtn.addEventListener('click', deletePost);
