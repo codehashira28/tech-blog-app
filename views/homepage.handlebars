@@ -1,16 +1,16 @@
 {{#each posts as |post|}}
-<a class="w-100 {{post.id}}" href="/comment/{{post.id}}">
+<a class="my-5 w-100 {{post.id}}" href="/comment/{{post.id}}">
     <div id="post" class="title-block display-flex justify-space-between bg-info text-light p-2 {{post.id}}">
-        <div class="{{post.id}}">{{post.title}}</div>
-        <div class="{{post.id}}">Posted by {{post.username}}</div>
+        <div class="{{post.id}}"><b>{{post.title}}</b></div>
+        <div class="{{post.id}}"><b>Posted by {{post.username}} on {{format_date post.createdAt}}</b></div>
     </div>
     <div class="p-2 {{post.id}}" style="border: 1px solid #1bbc9b">{{post.content}}</div>
 </a>
 {{#each post.comments as |comment|}}
-    <div id="comment-block" class="w-100 my-2">
-        <div class="display-flex justify-space-between bg-light text-dark p-2">
-            <div>{{comment.comment}}</div>
-            <div>Posted by {{comment.username}}</div>
+    <div id="comment-block" class="w-100 my-2 ml-5">
+        <div class="display-flex justify-space-between bg-light text-link p-2">
+            <div><i>{{comment.comment}}</i></div>
+            <div><i>Commented by {{comment.username}} on {{format_date comment.created_at}}</i></div>
         </div>
     </div>
 {{/each}}

@@ -10,11 +10,13 @@ router.get('/', async (req, res) => {
           model: Comment,
           attributes: [
             'comment',
-            'username'
+            'username',
+            'created_at'
           ]
         }
       ]
     });
+    
     const posts = dbPostData.map((post) =>
       post.get({ plain: true })
     );
@@ -120,11 +122,17 @@ router.post('/dashboard/create', async (req, res) => {
   }
 })
 
-router.get('/comment/:id', (req, res) => {
-  res.render('createComment', {
-    loggedIn: req.session.loggedIn
-  })
-})
+router.get('/comment/:id', async (req, res) => {
+  try {
+    const dbPostData = await Post.findByPk(req.params.id);
+
+    const post = dbPostData.get({ plain: true });
+    res.render('createComment', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 router.post('/comment/:id', async (req, res) => {
   try {

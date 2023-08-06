@@ -1,5 +1,13 @@
 {{#if loggedIn}}
-<div class="create-comment-block w-100" style="border: 3px solid #2d3e50">
+<div class="w-100 {{post.id}}" href="/comment/{{post.id}}">
+    <div id="post" class="title-block display-flex justify-space-between bg-info text-light p-2 {{post.id}}">
+        <div class="{{post.id}}">{{post.title}}</div>
+        <div class="{{post.id}}">Posted by {{post.username}} on {{format_date post.createdAt}}</div>
+    </div>
+    <div class="p-2 {{post.id}}" style="border: 1px solid #1bbc9b">{{post.content}}</div>
+</div>
+
+<div class="create-comment-block w-100" style="border: 3px solid #2d3e50; height: 11.5rem">
     <div class="p-2 mb-2" style="background: #2d3e50; color: white">Create New Comment</div>
     <div class="comment-block px-2">
         <label for="comment" style="display: block">Comment</label>
