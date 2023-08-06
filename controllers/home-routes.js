@@ -1,14 +1,24 @@
 const router = require('express').Router();
-const { Gallery, Painting, Post } = require('../models');
+const { Gallery, Painting, Post, Comment } = require('../models');
 
 // GET all galleries for homepage
 router.get('/', async (req, res) => {
   try {
-    const dbPostData = await Post.findAll();
-
+    const dbPostData = await Post.findAll({
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            'comment',
+            'username'
+          ]
+        }
+      ]
+    });
     const posts = dbPostData.map((post) =>
       post.get({ plain: true })
     );
+
     res.render('homepage', {
       posts,
       loggedIn: req.session.loggedIn,
@@ -110,10 +120,25 @@ router.post('/dashboard/create', async (req, res) => {
   }
 })
 
-router.get('/comment', (req, res) => {
+router.get('/comment/:id', (req, res) => {
   res.render('createComment', {
     loggedIn: req.session.loggedIn
   })
+})
+
+router.post('/comment/:id', async (req, res) => {
+  try {
+    const dbCommentData = await Comment.create({
+      comment: req.body.comment,
+      username: req.session.user,
+      post_id: req.params.id,
+    });
+
+    res.status(200).json(dbCommentData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 })
 
 module.exports = router;
