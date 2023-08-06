@@ -4,13 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "node config/init",
-    "start": "node server",
-    "preseed": "node config/init seed",
-    "seed": "node seeds/index",
-    "prewatch": "node config/init",
-    "watch": "nodemon server"
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +19,8 @@
     "express-session": "^1.17.3",
     "mysql2": "^3.5.2",
     "sequelize": "^6.32.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
