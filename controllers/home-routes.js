@@ -149,4 +149,36 @@ router.post('/comment/:id', async (req, res) => {
   }
 })
 
+router.get('/dashboard/post/:id', async (req, res) => {
+  try {
+    const dbPostData = await Post.findByPk(req.params.id);
+
+    const post = dbPostData.get({ plain: true });
+    res.render('updatePost', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.put('/dashboard/post/:id',  async (req, res) => {
+  try {
+    await Post.update(
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    )
+    res.status(200).json();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
